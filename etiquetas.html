@@ -5,30 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etiquetas DIPS/GEDS</title>
     <style>
+            @media print {
+            background-image {
+                display: block;
+                width: auto;
+                height: auto; 
+
+                }
+            }
+             
+                @page {
+            size: A4;
+            margin: 10mm;
+        }
+
         body {
             font-family: Arial, sans-serif;
-            padding: 20px;
+            padding: 10px;
+            margin: 0;
         }
 
         .container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            max-width: 800px;
+            gap: 5px;
+            max-width: 210mm;
             margin: 0 auto;
         }
 
         .etiqueta {
-            border: 1px solid black;
-            padding: 10px;
-            width: 300px;
-            height: 150px;
-            background-image: url('../img/ovg.png');
+            border: 1.5px solid black;
+            padding: 8px;
+            width: 90mm;
+            height: 35mm;
+            box-sizing: border-box;
+            margin-bottom: 2mm;
+            background-image: url('./img/ovg.png');
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
             position: relative;
-            background-color: rgba(255, 255, 255, 0.9);
+            
         }
 
         .etiqueta::before {
@@ -38,7 +55,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-image: url('../img/ovg.png');
+            background-image: url('./img/ovg.png');
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
@@ -52,35 +69,52 @@
         }
 
         .titulo {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .campo {
-            margin: 5px 0;
-            font-size: 12px;
+            margin: 3px 0;
+            font-size: 11px;
+            line-height: 1.2;
         }
 
         .campo-linha {
             border-bottom: 1px solid black;
             display: inline-block;
-            width: 200px;
-            margin-left: 5px;
+            width: 75%;
+            margin-left: 3px;
         }
 
         .campo-duplo {
             display: flex;
-            gap: 20px;
+            justify-content: flex-start;
+            gap: 15px;
+        }
+
+        .campo-duplo .campo-linha {
+            width: 100px;
         }
 
         .campo-data {
             display: inline-block;
-            width: 100px;
+            width: 80px;
             text-align: center;
         }
 
         @media print {
+            body {
+                padding: 0;
+            }
+            
+            .container {
+                gap: 0;
+            }
+            
+            .etiqueta {
+                page-break-inside: avoid;
+            }
             .botoes {
                 display: none !important;
             }
@@ -90,13 +124,16 @@
 <body>
     <div class="botoes" style="margin: 20px; text-align: center;">
         <button onclick="window.print()" style="padding: 10px 20px; margin: 5px;">Imprimir Esta Página</button>
-        <button onclick="window.location.href='etiquetas.html'" style="padding: 10px 20px; margin: 5px;">Abrir 2x7</button>
+        <button onclick="window.location.href='index.html'" style="padding: 10px 20px; margin: 5px;">Abrir 2x5</button>
     </div>
 
     <div class="container">
-        <!-- Repetir este bloco 10 vezes para criar todas as etiquetas -->
+        
+    
+
         <div class="etiqueta">
             <div class="titulo">DIPS/GEDS Goiás Social - Olhar Para Todos</div>
+         
             <div class="campo">
                 ESCOLA:<span class="campo-linha"></span>
             </div>
@@ -105,41 +142,49 @@
             </div>
             <div class="campo-duplo">
                 <div class="campo">
-                    ID:<span class="campo-linha" style="width: 80px;"></span>
+                    ID:<span class="campo-linha"></span>
                 </div>
                 <div class="campo">
-                    CPF:<span class="campo-linha" style="width: 80px;"></span>
+                    CPF:<span class="campo-linha"></span>
                 </div>
             </div>
             <div class="campo">
                 ATENDENTE: <span class="campo-data">___/___/___</span>
             </div>
         </div>
-        <!-- Repetir o bloco acima mais 9 vezes -->
     </div>
 
     <script>
-        // Script para duplicar a etiqueta 10 vezes
         window.onload = function() {
             const container = document.querySelector('.container');
             const etiqueta = document.querySelector('.etiqueta').outerHTML;
             
-            // Começamos com i=1 pois já temos uma etiqueta no HTML
-            for(let i = 1; i < 10; i++) {
+            // Criar 14 etiquetas (7 linhas com 2 colunas)
+            for(let i = 1; i < 14; i++) {
                 container.innerHTML += etiqueta;
             }
         }
 
-        // Nova função para selecionar página
         function selecionarPagina() {
-            const pagina = prompt('Digite 1 para esta página ou 2 para a página de etiquetas:');
+            const pagina = prompt('Digite 1 para a primeira página ou 2 para esta página:');
             if (pagina === '1') {
-                window.print();
+                window.location.href = 'index.html';
             } else if (pagina === '2') {
-                window.location.href = 'etiquetas.html';
+                window.print();
             } else {
                 alert('Opção inválida!');
             }
+        }
+
+        if (document.styleSheets[0]) {
+            const styleSheet = document.styleSheets[0];
+            styleSheet.insertRule(`
+                @media print {
+                    .botoes {
+                        display: none !important;
+                    }
+                }
+            `, styleSheet.cssRules.length);
         }
     </script>
 </body>
