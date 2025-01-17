@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etiquetas DIPS/GEDS</title>
+    <style>
+            @media print {
+            background-image {
+                display: block;
+                width: auto;
+                height: auto; 
+
+                }
+            }
+             
+                @page {
+            size: A4;
+            margin: 10mm;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 10px;
+            margin: 0;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5px;
+            max-width: 210mm;
+            margin: 0 auto;
+        }
+
+        .etiqueta {
+            border: 1.5px solid black;
+            padding: 8px;
+            width: 90mm;
+            height: 35mm;
+            box-sizing: border-box;
+            margin-bottom: 2mm;
+            background-image: url('../img/ovg.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            
+        }
+
+        .etiqueta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('../img/ovg.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .etiqueta > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .titulo {
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .campo {
+            margin: 3px 0;
+            font-size: 11px;
+            line-height: 1.2;
+        }
+
+        .campo-linha {
+            border-bottom: 1px solid black;
+            display: inline-block;
+            width: 75%;
+            margin-left: 3px;
+        }
+
+        .campo-duplo {
+            display: flex;
+            justify-content: flex-start;
+            gap: 15px;
+        }
+
+        .campo-duplo .campo-linha {
+            width: 100px;
+        }
+
+        .campo-data {
+            display: inline-block;
+            width: 80px;
+            text-align: center;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+            }
+            
+            .container {
+                gap: 0;
+            }
+            
+            .etiqueta {
+                page-break-inside: avoid;
+            }
+            .botoes {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="botoes" style="margin: 20px; text-align: center;">
+        <button onclick="window.print()" style="padding: 10px 20px; margin: 5px;">Imprimir Esta Página</button>
+        <button onclick="window.location.href='index.html'" style="padding: 10px 20px; margin: 5px;">Abrir 2x5</button>
+    </div>
+
+    <div class="container">
+        
+    
+
+        <div class="etiqueta">
+            <div class="titulo">DIPS/GEDS Goiás Social - Olhar Para Todos</div>
+         
+            <div class="campo">
+                ESCOLA:<span class="campo-linha"></span>
+            </div>
+            <div class="campo">
+                BENEF:<span class="campo-linha"></span>
+            </div>
+            <div class="campo-duplo">
+                <div class="campo">
+                    ID:<span class="campo-linha"></span>
+                </div>
+                <div class="campo">
+                    CPF:<span class="campo-linha"></span>
+                </div>
+            </div>
+            <div class="campo">
+                ATENDENTE: <span class="campo-data">___/___/___</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const container = document.querySelector('.container');
+            const etiqueta = document.querySelector('.etiqueta').outerHTML;
+            
+            // Criar 14 etiquetas (7 linhas com 2 colunas)
+            for(let i = 1; i < 14; i++) {
+                container.innerHTML += etiqueta;
+            }
+        }
+
+        function selecionarPagina() {
+            const pagina = prompt('Digite 1 para a primeira página ou 2 para esta página:');
+            if (pagina === '1') {
+                window.location.href = 'index.html';
+            } else if (pagina === '2') {
+                window.print();
+            } else {
+                alert('Opção inválida!');
+            }
+        }
+
+        if (document.styleSheets[0]) {
+            const styleSheet = document.styleSheets[0];
+            styleSheet.insertRule(`
+                @media print {
+                    .botoes {
+                        display: none !important;
+                    }
+                }
+            `, styleSheet.cssRules.length);
+        }
+    </script>
+</body>
+</html> 
