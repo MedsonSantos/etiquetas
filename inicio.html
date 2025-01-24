@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etiquetas DIPS/GEDS</title>
+
+</head>
+
+    <style>
+        span{
+            display: flex;
+            justify-content: center;
+            font-size: 50px;
+
+        }
+        
+
+    
+        p {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation-duration: 3s;
+            animation-name: slidein;
+            
+
+        }
+
+        @keyframes slidein{
+            from{
+                margin-left: 100%;
+                width: 300%;
+            }
+            to{
+                margin-left: 0%;
+                width: 100%;
+            }
+        }
+        
+        .botaoEntidades{
+            
+            background-color:#4682B4;
+            background-image: url('./img/entidades.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+         
+           
+        }
+        .botaoEscolas{
+            display: initial;
+            background-color: #5F9EA0;
+            background-image: url('./img/escola.png');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
+
+    </style>
+
+<body>
+    <div class="container">
+        <h1><p style="color: brown;">ESCOLHA O TIPO</p></h1>
+
+        <span><button onclick="window.location.href='Entidades2x5.html'" class="botaoEntidades" style="height: 350px; width:350px; border-radius:50%; font-size: 60px; color: white;">ENTIDADES
+        </span></button>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+        <span><button onclick="window.location.href='p2x5.html'" class="botaoEscolas" style="height: 350px; width:350px; border-radius:50%; font-size: 60px; color: white;">ESCOLAS
+        </span>
+        </button>
+    </div>
+</body>
+    

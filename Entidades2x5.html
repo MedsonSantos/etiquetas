@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etiquetas DIPS/GEDS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            display: grid;
+            justify-items: left;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 35px;
+            max-width: 880px;
+            margin: 0 auto;
+        }
+
+        .etiqueta {
+            border-radius: 15px;
+            border: 1px solid black;
+            padding: 25px;
+            width: 101,6mm;
+            height: 50,8mm;
+            margin-bottom: 2mm;
+            background-image: url('./img/ovg.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .etiqueta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('./img/ovg.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .etiqueta > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .titulo {
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .campo {
+            margin: 4px 1px;
+            font-size: 12px;
+        }
+
+        .campo-linha {
+            border-bottom: 1px solid black;
+            display: inline-block;
+            width: 210px;
+            margin-left: 5px;
+        }
+
+        .campo-duplo {
+            display: flex;
+            gap: 20px;
+        }
+
+        @media print {
+            .botoes {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="botoes" style="margin: 20px; text-align: center;">
+        <button onclick="window.print()" style="padding: 10px 20px; margin: 5px; background-color:#6A5ACD ; border-radius: 30px;"><font color="white"><strong>Imprimir Esta Página</strong></font></button>
+        <button onclick="window.location.href='Entidades2x7.html'" style="padding: 10px 20px; margin: 5px; background-color:#66CDAA; border-radius: 30px;"><font color="red"><strong>ENTIDADES (2x7)</strong></font></button>
+        <button onclick="window.location.href='inicio.html'" style="padding: 10px 20px; margin: 5px; border-radius: 30px; background-color:#66CDAA;"><font color="red" ><strong>◀ PÁGINA INICIAL</strong></font>
+        </button>
+      
+    </div>
+
+    <div class="container">
+        <!-- Repetir este bloco 10 vezes para criar todas as etiquetas -->
+        <div class="etiqueta">
+            <div class="titulo">DIPS/GEDS Goiás Social - Olhar Para Todos</div>
+            <div class="campo">
+                ENTIDADE:<span class="campo-linha" style="width: 185px;"></span>
+            </div>
+            <div class="campo">
+                BENEF:<span class="campo-linha"></span>
+            </div>
+            <div class="campo-duplo">
+                <div class="campo">
+                    ID:<span class="campo-linha" style="width: 80px;"></span>
+                </div>
+                <div class="campo">
+                    CPF:<span class="campo-linha" style="width: 80px;"></span>
+                </div>
+            </div>
+            <div class="campo">
+                ATENDENTE:<span class="campo-linha" style="width: 80px;"></span><span> Data:___/___/___</span>
+            </div>
+        </div>
+        <!-- Repetir o bloco acima mais 9 vezes -->
+    </div>
+
+    <script>
+        // Script para duplicar a etiqueta 10 vezes
+        window.onload = function() {
+            const container = document.querySelector('.container');
+            const etiqueta = document.querySelector('.etiqueta').outerHTML;
+            
+            // Começamos com i=1 pois já temos uma etiqueta no HTML
+            for(let i = 1; i < 10; i++) {
+                container.innerHTML += etiqueta;
+            }
+        }
+
+        // Nova função para selecionar página
+        function selecionarPagina() {
+            const pagina = prompt('Digite 1 para esta página ou 2 para a página de etiquetas:');
+            if (pagina === '1') {
+                window.print();
+            } else if (pagina === '2') {
+                window.location.href = 'etiquetas.html';
+            } else {
+                alert('Opção inválida!');
+            }
+        }
+    </script>
+</body>
+</html> 
