@@ -50,6 +50,7 @@
             background-position: center;
             background-repeat: no-repeat;
             box-shadow: 0 0 8px #0000005a;
+            overflow: hidden;
                  
         }
         .botaoEscolas{
@@ -60,6 +61,7 @@
             background-repeat: no-repeat;
             background-size: contain;
             box-shadow: 0 0 8px #0000005a;
+            overflow: hidden;
         }
         button::before{
             content: "";
@@ -68,8 +70,29 @@
             position: absolute;
             left: -100px;
             top: 100%;
+            background-color: blueviolet;
+        }
+        button:hover::before{
+            animation: desloca .5s;
+            left: 0;
+            top: 0;
 
+        }
 
+        @keyframes descloca {
+            0%{
+                left: -100px;
+                top: 100%;
+            }
+            50%{
+                left: 15%;
+                top: -25%;
+            }
+            100%{
+                left: 0;
+                top: 0;
+            }
+            
         }
         body{
             background-image: url('./img/fundo.jpg');
