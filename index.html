@@ -51,6 +51,8 @@
             font-size: 60px; 
             text-shadow: 0 0 3px black;
             background-image: url('./img/entidades.png');
+            transform:  scale(1);
+            animation: anima_imagem 1s linear infinite;
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
@@ -67,6 +69,8 @@
             font-size: 60px; 
             text-shadow: 0 0 3px black;
             background-image: url('./img/escola.png');
+            transform:  scale(1);
+            animation: anima_imagem 1s linear infinite;
             background-position: center;
             background-repeat: no-repeat;
             background-size: contain;
@@ -85,6 +89,11 @@
 
         body{
             background-image: url('./img/fundo.jpg');
+        }
+        @keyframes anima_imagem{
+            to{
+                transform:  scale(0.5);
+            }
         }
 
     </style>
